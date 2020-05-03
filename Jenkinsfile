@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'File Checkout Script'
-                echo "Repo URL is" ${url}"
+                echo $url
                 
             }
         }
