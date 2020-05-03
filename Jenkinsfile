@@ -5,7 +5,6 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'File Checkout Script'
-                echo $url
                 
             }
         }
