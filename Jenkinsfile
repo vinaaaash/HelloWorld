@@ -1,21 +1,19 @@
+ def jiraId = ['DSTT-1978','DSTT-2020','DSTT-2121'];
+ def url = 'https://github.com/vinaaaash/HelloWorld.git';
+ def commitIdList = []
+ def workingDir = new File("F:\\JavaProj") 
+
 pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                echo 'Building..'
+                echo 'File Checkout Script'
+                echo "Repo URL is" ${url}"
+                
             }
         }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
+        
     }
 }
