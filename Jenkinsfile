@@ -1,19 +1,17 @@
 #!groovy
 
+def jiraId = ['DSTT-1978','DSTT-2020','DSTT-2121']
+def commitIdList = []
+
 pipeline {
     agent any
 	stages {
-		
 		  stage ('forloop'){
-            steps {
-		    def jiraId = ['DSTT-1978','DSTT-2020','DSTT-2121']
-		    def commitIdList = []
+			  steps {
                 echo "Entering for loop"
             }
-        }	
-		
-		
-        stage ('git'){
+        }		
+        stage ('checkout'){
             steps {
                 checkout(
 		        [$class: 'GitSCM', 
