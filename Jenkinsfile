@@ -8,9 +8,10 @@ pipeline {
             steps {
                 echo 'File Checkout Script'
 		echo "My variable is ${myVariable}"
-		 for (ji in jiraId) 
-		    {  echo "Jira Id is  ${ji}" }
-                
+		    step {
+		 	for (ji in jiraId) 
+		    		{  echo "Jira Id is  ${ji}" }
+		         }
                 
             }
         }
