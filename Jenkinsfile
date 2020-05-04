@@ -17,3 +17,6 @@ stage ('checkout') {
 steps {
 build()
 }
+}
+}
+}
