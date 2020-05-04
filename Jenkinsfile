@@ -1,6 +1,16 @@
 pipeline {
     agent any
 	stages {
+		
+		  stage ('forloop'){
+            steps {
+		    def jiraId = ['DSTT-1978','DSTT-2020','DSTT-2121']
+		    def commitIdList = []
+                echo "Entering for loop"
+            }
+        }	
+		
+		
         stage ('git'){
             steps {
                 checkout(
@@ -12,10 +22,6 @@ pipeline {
 		        userRemoteConfigs: [[url: 'https://github.com/vinaaaash/HelloWorld.git']]])
             	  }
                      }
-	  stage ('test'){
-            steps {
-                echo "This is a test stage"
-            }
-        }
+	
 	       }
           }
