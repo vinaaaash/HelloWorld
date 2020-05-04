@@ -11,7 +11,7 @@ pipeline {
 				  script{
 				  for(i in jiraId)
 					  { echo "Entering for loop with value ${i}"
-					   List<String> sourceChanged = sh(returnStdout: true, script: "git diff --name-only origin/master..origin/${env.BRANCH_NAME}").split()
+					   
 					  }
 			          
 				  }
