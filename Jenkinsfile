@@ -13,6 +13,7 @@ pipeline {
 					  { 
 				           echo "Entering for loop with value ${i}"
 						bat 'wmic computersystem get name'
+						  echo bat(returnStdout: true, script: 'set')
 					  }
 			          
 				  }
