@@ -1,4 +1,5 @@
 def myVariable = "foo"
+def jiraId = ['DSTT-1978','DSTT-2020','DSTT-2121']
 
 pipeline {
     agent any
@@ -7,12 +8,9 @@ pipeline {
             steps {
                 echo 'File Checkout Script'
 		echo "My variable is ${myVariable}"
-                checkout(
-		        [$class: 'GitSCM', branches: [[name: '*/master']], 
-		        doGenerateSubmoduleConfigurations: false, 
-		        extensions: [[$class: 'CheckoutOption', timeout: 1]], 
-		        submoduleCfg: [], 
-		        userRemoteConfigs: [[url: 'https://github.com/vinaaaash/HelloWorld.git']]])
+		 for (ji in jiraId) 
+		    {  echo "Jira Id is  ${ji}" }
+                
                 
             }
         }
