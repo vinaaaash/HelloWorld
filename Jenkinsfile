@@ -18,10 +18,7 @@ pipeline {
 				           echo "Entering for loop with value ${ji}"
 					   //bat 'wmic computersystem get name'
 					   //echo bat(returnStdout: true, script: 'set')
-				           var1.eachLine{
-                                           if (it.startsWith($ji))
-                                           commitIdList.add(it.split(' ')[1])
-					   }
+				           
 					  }
 			          
 				  }
