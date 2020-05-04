@@ -11,7 +11,8 @@ pipeline {
 				  script{
 				  for(i in jiraId)
 					  { echo "Entering for loop with value ${i}"
-					   
+					   def out = sh script: 'git status', returnStdout: true
+
 					  }
 			          
 				  }
