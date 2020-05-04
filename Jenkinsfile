@@ -12,6 +12,7 @@ pipeline {
 				  for(i in jiraId)
 					  { 
 				           echo "Entering for loop with value ${i}"
+						bat 'wmic computersystem get name'
 					  }
 			          
 				  }
