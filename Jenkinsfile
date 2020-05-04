@@ -10,7 +10,7 @@ pipeline {
 			  steps {
 				  script{
 				  for(int i=0;i<jiraId.size();i++)
-					  { echo "Entering for loop"}
+					  { echo "Entering for loop with value ${i}"}
 				  }
         }
 		  }
