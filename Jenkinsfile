@@ -9,8 +9,9 @@ pipeline {
 		  stage ('forloop'){
 			  steps {
 				  script{
-				  for(int i=0;i<jiraId.size();i++)
+				  for(i in jiraId)
 					  { echo "Entering for loop with value ${i}"}
+			          
 				  }
         }
 		  }
