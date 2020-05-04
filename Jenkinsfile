@@ -10,7 +10,9 @@ pipeline {
 			  steps {
 				  script{
 				  for(i in jiraId)
-					  { echo "Entering for loop with value ${i}"}
+					  { echo "Entering for loop with value ${i}"
+					   commitIdList = sh(returnStdout: true, script: "git log --pretty=format:"%s %H" |grep $i | awk '{print $NF}").split()
+					  }
 			          
 				  }
         }
