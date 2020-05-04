@@ -11,7 +11,14 @@ pipeline {
 				  script{
 				  for(i in jiraId)
 					  { echo "Entering for loop with value ${i}"
-					   def out = sh script: 'git status', returnStdout: true
+					   
+					   try{
+						  sh 'git staus'
+					   }
+					   catch (Exception err){
+					   result = "step failed\n\n${err}"
+					   exit 1;
+						}
 
 					  }
 			          
