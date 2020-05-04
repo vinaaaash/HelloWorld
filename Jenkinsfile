@@ -1,20 +1,19 @@
-def myVariable = "foo"
-def jiraId = ['DSTT-1978','DSTT-2020','DSTT-2121']
-
+def build(){
+stage('Build'){
+checkout(
+		        [$class: 'GitSCM', branches: [[name: '*/master']], 
+		        doGenerateSubmoduleConfigurations: false, 
+		        extensions: [[$class: 'CheckoutOption', timeout: 1]], 
+		        submoduleCfg: [], 
+		        userRemoteConfigs: [[url: 'https://github.com/vinaaaash/HelloWorld.git']]])
+				}
+			}
+			
+/*************** Pipeline Starts ***********************************************/
 pipeline {
     agent any
-    stages {
-        stage('Checkout') {
-            steps {
-                echo 'File Checkout Script'
-		echo "My variable is ${myVariable}"
-		    step {
-		 	for (ji in jiraId) 
-		    		{  echo "Jira Id is  ${ji}" }
-		         }
-                
-            }
-        }
-        
-    }
+stages {  
+stage ('checkout') {
+steps {
+build()
 }
