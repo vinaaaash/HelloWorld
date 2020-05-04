@@ -8,9 +8,12 @@ pipeline {
 	stages {
 		  stage ('forloop'){
 			  steps {
-                echo "Entering for loop"
-            }
-        }		
+				  script{
+				  for(int i=0;i<jiraId.size();i++)
+					  { echo "Entering for loop"}
+				  }
+        }
+		  }
         stage ('checkout'){
             steps {
                 checkout(
