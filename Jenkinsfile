@@ -17,12 +17,14 @@ pipeline {
 				           echo "Entering for loop value ${ji}"
                				   ret = sh(script: 'git log --pretty=format:\"%s %H\" | grep DSTT-2121', returnStdout: true)
                				   echo "val of ret ${ret}"
-					   values = ret.split('DSTT-2121')	
+					   values.add(ret.split(' '))
+					   echo "Value of val is ${values[1]}" 
                                           }
-				   for(val in values)
-					  {
-						  echo "Value of val is ${val}"
-					  }
+				   
+					  
+					  
+						  
+					
 				           
 					 
 			          
