@@ -17,8 +17,8 @@ pipeline {
 				           echo "Entering for loop value ${ji}"
 					   ret = sh(script: 'git log --pretty=format:\"%s %H\" | grep DSTT-2121', returnStdout: true)
                				   echo "val of ret ${ret}"
-					   //values.add(ret.split(' '))
-					   //echo "Value of val is ${values[1]}" 
+					   values = (ret.split(' '))
+					   echo "Value of val is ${values[1]}" 
                                           }	 
 			          
 				  }
