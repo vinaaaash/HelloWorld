@@ -1,6 +1,6 @@
 #!groovy
 
-def jiraId = ['DSTT-1978','DSTT-2020','DSTT-2121']
+def jiraId = ['DSTT-2121']
 def commitIdList = []
 //def workingDir = new File("F:\\JavaProj")
 def ret
