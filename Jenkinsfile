@@ -2,22 +2,20 @@
 
 def jiraId = ['DSTT-1978','DSTT-2020','DSTT-2121']
 def commitIdList = []
-def workingDir = new File("F:\\JavaProj")
+//def workingDir = new File("F:\\JavaProj")
+def ret
 
 pipeline {
     agent any
 	stages {
 		  stage ('forloop'){
 			  steps {
-				  script{
-					  Process proc = "git log --pretty=format:\"%s %H\"".execute(null,workingDir)
-					  def var1=proc.text
-					  
+				  script{				  
 				  for(ji in jiraId)
 					  { 
 				           echo "Entering for loop with value ${ji}"
-					   //bat 'wmic computersystem get name'
-					   //echo bat(returnStdout: true, script: 'set')
+               				   ret = sh(script: 'git log --pretty=format:\"%s %H\" | grep DSTT-2121', returnStdout: true)
+               				   echo "val of command ${ret}"
 				           
 					  }
 			          
