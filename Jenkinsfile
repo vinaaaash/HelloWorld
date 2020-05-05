@@ -19,14 +19,7 @@ pipeline {
                				   echo "val of ret ${ret}"
 					   values.add(ret.split(' '))
 					   echo "Value of val is ${values[1]}" 
-                                          }
-				   
-					  
-					  
-						  
-					
-				           
-					 
+                                          }	 
 			          
 				  }
         }
