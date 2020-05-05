@@ -13,7 +13,7 @@ pipeline {
 				  script{				  
 				  for(ji in jiraId)
 					  { 
-				           echo "Entering for loop with value ${ji}"
+				           echo "Entering for loop value ${ji}"
                				   ret = sh(script: 'git log --pretty=format:\"%s %H\" | grep DSTT-2121', returnStdout: true)
                				   echo "val of command ${ret}"
 				           
