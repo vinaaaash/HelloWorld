@@ -4,6 +4,7 @@ def jiraId = ['DSTT-2121']
 def commitIdList = []
 //def workingDir = new File("F:\\JavaProj")
 def ret
+def values
 
 pipeline {
     agent any
@@ -16,10 +17,14 @@ pipeline {
 				           echo "Entering for loop value ${ji}"
                				   ret = sh(script: 'git log --pretty=format:\"%s %H\" | grep DSTT-2121', returnStdout: true)
                				   echo "val of ret ${ret}"
-					   echo "ret split starts here" ret.split('DSTT-2121')
-                                           }
-				           
+					   values = ret.split('DSTT-2121')	
+                                          }
+				   for(val in values)
+					  {
+						  echo "Value of val is ${val}"
 					  }
+				           
+					 
 			          
 				  }
         }
