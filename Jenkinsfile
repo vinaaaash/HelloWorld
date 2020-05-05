@@ -15,10 +15,10 @@ pipeline {
 					  { 
 				           echo "Entering for loop value ${ji}"
                				   ret = sh(script: 'git log --pretty=format:\"%s %H\" | grep DSTT-2121', returnStdout: true)
-               				   echo "val of command ${ret}"
+               				   echo "val of ret ${ret}"
 					   ret.each{
 			                   if (it.startsWith('DSTT-2121'))
-                                           println it.split(' ')
+                                           echo it.split(' ')
                                            }
 				           
 					  }
