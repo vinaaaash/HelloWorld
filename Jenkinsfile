@@ -26,15 +26,11 @@ def checkoutGitRepository(comm, poll = true, timeout = 10, depth = 0){
 pipeline {
     agent any
 	stages {
-		stage ('loadingProps'){
-			script{
-				loadProperties()
-			}
-		}
+		
 		  stage ('forloop'){
 			  steps {
 				  script{
-					 
+					 loadProperties()
 					echo "Environment value ${env.WORKSPACE}"  
 				  for(ji in jiraId)
 					  { 
