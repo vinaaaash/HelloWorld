@@ -6,11 +6,12 @@ def ret
 def values
 
 def checkoutGitRepository(comm, poll = true, timeout = 10, depth = 0){
-                checkout(
+          
+	  checkout(
           [$class: 'GitSCM',
-   branches: [[name: comm]],
+   	  branches: [[name: comm]],
           doGenerateSubmoduleConfigurations: false,
-          extensions: [[$class: 'CheckoutOption', timeout: 10]],[[$class: 'RelativeTargetDirectory', relativeTargetDir: '/var/lib/jenkins/workspace/multibranch-pipeline-test_master/chkoutdit']],
+          extensions: [[$class: 'CheckoutOption', timeout: 10],[$class: 'RelativeTargetDirectory', relativeTargetDir: '/var/lib/jenkins/workspace/multibranch-pipeline-test_master/chkoutdit']],
           submoduleCfg: [],
           userRemoteConfigs: [[credentialsId: 'cb6b162a-4202-436c-ab60-44e8886a4de4', url: 'https://github.com/vinaaaash/HelloWorld.git']]])
               }
