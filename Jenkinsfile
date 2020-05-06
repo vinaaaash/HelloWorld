@@ -2,7 +2,7 @@
 def jiraId = ['DSTT-2121']
 //def commitIdList = []
 //def props = readProperties file:'JenkinsfileConfig.properties'
-def env.WORKSPACE=pwd()
+//def env.WORKSPACE=pwd()
 def ret
 def values
 def checkoutGitRepository(comm, poll = true, timeout = 10, depth = 0){
