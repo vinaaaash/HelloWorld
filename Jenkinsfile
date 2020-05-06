@@ -4,7 +4,6 @@ def jiraId = ['DSTT-2121']
 //def commitIdList = []
 def ret
 def values
-
 def checkoutGitRepository(comm, poll = true, timeout = 10, depth = 0){
           
 	  checkout(
