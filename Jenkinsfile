@@ -1,5 +1,5 @@
 #!groovy
-def jiraId = properties.JIRA
+def jiraId
 
 //def props = readProperties file:'JenkinsfileConfig.properties'
 def ret
@@ -31,6 +31,7 @@ pipeline {
 			  steps {
 				  script{
 					 loadProperties()
+					  jiraId=${properties.JIRA}
 					echo "Environment value ${env.WORKSPACE}"  
 				  for(ji in jiraId)
 					  { 
