@@ -1,7 +1,8 @@
 #!groovy
-//def jiraId = ['DSTT-2121']
+def jiraId = ['DSTT-2121']
 //def commitIdList = []
-props = readProperties file:'JenkinsfileConfig.properties'
+//def props = readProperties file:'JenkinsfileConfig.properties'
+def env.WORKSPACE=pwd()
 def ret
 def values
 def checkoutGitRepository(comm, poll = true, timeout = 10, depth = 0){
@@ -20,10 +21,11 @@ pipeline {
 	stages {
 		  stage ('forloop'){
 			  steps {
-				  script{				  
+				  script{	
+					echo "Environment value ${env.WORKSPACE}"  
 				  for(ji in jiraId)
 					  { 
-				           echo "Entering for loop value ${props.JIRA}"
+				           echo "Entering for loop value ${ji}"
 					   ret = sh(script: 'git log --pretty=format:\"%s %H\" | grep DSTT-2121 | awk \'{print $NF}\'', returnStdout: true)
                				   echo "val of ret ${ret}"
 					   values = ret.split('\n') 
