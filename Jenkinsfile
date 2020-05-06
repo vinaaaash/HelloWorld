@@ -9,7 +9,7 @@ properties = null
 
 def loadProperties() {
         properties = new Properties()
-        File propertiesFile = new File("JenkinsfileConfig.properties")
+        File propertiesFile = new File("${workspace}/JenkinsfileConfig.properties")
         properties.load(propertiesFile.newDataInputStream())
     }
 def checkoutGitRepository(comm, poll = true, timeout = 10, depth = 0){
