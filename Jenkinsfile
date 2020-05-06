@@ -1,7 +1,7 @@
 #!groovy
-
-def jiraId = ['DSTT-2121']
+//def jiraId = ['DSTT-2121']
 //def commitIdList = []
+props = readProperties file:'JenkinsfileConfig.properties'
 def ret
 def values
 def checkoutGitRepository(comm, poll = true, timeout = 10, depth = 0){
@@ -10,7 +10,7 @@ def checkoutGitRepository(comm, poll = true, timeout = 10, depth = 0){
           [$class: 'GitSCM',
    	  branches: [[name: comm]],
           doGenerateSubmoduleConfigurations: false,
-          extensions: [[$class: 'CheckoutOption', timeout: 10],[$class: 'RelativeTargetDirectory', relativeTargetDir: '/var/lib/jenkins/workspace/multibranch-pipeline-test_master/chkoutdit']],
+          extensions: [[$class: 'CheckoutOption', timeout: 10],[$class: 'RelativeTargetDirectory', relativeTargetDir: '/var/lib/jenkins/workspace/multibranch-pipeline-test_master/']],
           submoduleCfg: [],
           userRemoteConfigs: [[credentialsId: 'cb6b162a-4202-436c-ab60-44e8886a4de4', url: 'https://github.com/vinaaaash/HelloWorld.git']]])
               }
@@ -23,7 +23,7 @@ pipeline {
 				  script{				  
 				  for(ji in jiraId)
 					  { 
-				           echo "Entering for loop value ${ji}"
+				           echo "Entering for loop value ${props.JIRA}"
 					   ret = sh(script: 'git log --pretty=format:\"%s %H\" | grep DSTT-2121 | awk \'{print $NF}\'', returnStdout: true)
                				   echo "val of ret ${ret}"
 					   values = ret.split('\n') 
