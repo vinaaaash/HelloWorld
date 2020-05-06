@@ -31,7 +31,7 @@ pipeline {
 			  steps {
 				  script{
 					 loadProperties()
-					  jiraId=${properties.JIRA}
+					  jiraId=properties.JIRA
 					echo "Environment value ${env.WORKSPACE}"  
 				  for(ji in jiraId)
 					  { 
