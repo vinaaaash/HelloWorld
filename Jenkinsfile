@@ -31,7 +31,7 @@ pipeline {
 			          
 					  echo "Value0 ${values[0]}"
         				  echo "Value1 ${values[1]}"
-                                          echo "Value2 ${values[2]}"
+                                          //echo "Value2 ${values[2]}"
 				  }
         }
 		  }
