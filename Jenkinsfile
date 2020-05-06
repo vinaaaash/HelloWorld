@@ -1,10 +1,17 @@
 #!groovy
 //def jiraId = ['DSTT-2121']
-//def commitIdList = []
-def props = readProperties file:'JenkinsfileConfig.properties'
-//def env.WORKSPACE=pwd()
+
+//def props = readProperties file:'JenkinsfileConfig.properties'
 def ret
 def values
+
+properties = null     
+
+def loadProperties() {
+        properties = new Properties()
+        File propertiesFile = new File("JenkinsfileConfig.properties")
+        properties.load(propertiesFile.newDataInputStream())
+    }
 def checkoutGitRepository(comm, poll = true, timeout = 10, depth = 0){
           
 	  checkout(
@@ -19,13 +26,19 @@ def checkoutGitRepository(comm, poll = true, timeout = 10, depth = 0){
 pipeline {
     agent any
 	stages {
+		stage ('loadingProps'){
+			script{
+				loadProperties()
+			}
+		}
 		  stage ('forloop'){
 			  steps {
-				  script{	
+				  script{
+					 
 					echo "Environment value ${env.WORKSPACE}"  
 				  for(ji in jiraId)
 					  { 
-				           echo "Entering for loop value ${props.JIRA}"
+				           echo "Entering for loop value ${properties.JIRA}"
 					   ret = sh(script: 'git log --pretty=format:\"%s %H\" | grep DSTT-2121 | awk \'{print $NF}\'', returnStdout: true)
                				   echo "val of ret ${ret}"
 					   values = ret.split('\n') 
