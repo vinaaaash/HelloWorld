@@ -25,7 +25,7 @@ pipeline {
 				  for(ji in jiraId)
 					  { 
 				           echo "Entering for loop value ${ji}"
-					   ret = sh(script: 'git log --pretty=format:\"%s %H\" | grep DSTT-2121', returnStdout: true)
+					   ret = sh(script: 'git log --pretty=format:\"%s %H\" | grep DSTT-2121 | awk \'{print $NF}\'', returnStdout: true)
                				   echo "val of ret ${ret}"
 					   values = ret.split('\n') 
                                           }	 
