@@ -1,5 +1,5 @@
 #!groovy
-//def jiraId = ['DSTT-2121']
+def jiraId = ['DSTT-2121']
 
 //def props = readProperties file:'JenkinsfileConfig.properties'
 def ret
@@ -34,7 +34,8 @@ pipeline {
 					echo "Environment value ${env.WORKSPACE}"  
 				  for(ji in jiraId)
 					  { 
-				           echo "Entering for loop value ${properties.JIRA}"
+				           echo "Entering for loop properties file value ${properties.JIRA}"
+				           echo "Entering for loop with array value ${ji}"
 					   ret = sh(script: 'git log --pretty=format:\"%s %H\" | grep DSTT-2121 | awk \'{print $NF}\'', returnStdout: true)
                				   echo "val of ret ${ret}"
 					   values = ret.split('\n') 
