@@ -19,7 +19,7 @@ def checkoutGitRepository(comm, poll = true, timeout = 10, depth = 0){
           doGenerateSubmoduleConfigurations: false,
           extensions: [[$class: 'CheckoutOption', timeout: 10],[$class: 'RelativeTargetDirectory', relativeTargetDir: '/var/lib/jenkins/workspace/multibranch-pipeline-test_master/']],
           submoduleCfg: [],
-          userRemoteConfigs: [[credentialsId: properties.PASSWORD, url: properties.GIT_URL]]])
+          userRemoteConfigs: [[credentialsId: properties.PASSWORD, url: properties.URL]]])
               }
 
 pipeline {
