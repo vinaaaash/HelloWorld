@@ -2,8 +2,8 @@
 def jiraId
 def ret
 def values
-def p
-def temp
+def command
+
 
 properties = null     
 
@@ -32,7 +32,10 @@ pipeline {
 				  script{
 					 loadProperties()
 					 jiraId="${properties.JIRA}".split(',')
-					//echo "Environment value ${env.WORKSPACE}"  
+					//echo "Environment value ${env.WORKSPACE}" 
+					  command = 'git status'
+					  def output = ['bash', '-c', command].execute().in.text
+					  echo "val of output is ${output}"
 				  for(ji in jiraId)
 					  { 
 				           
