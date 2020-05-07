@@ -26,7 +26,9 @@ pipeline {
     agent any
 	stages {
 		stage ('propertiesload'){
+			steps{
 			loadProperties()
+			}
 		}
 		  stage ('forloop'){
 			  steps {
