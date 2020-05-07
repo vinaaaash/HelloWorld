@@ -1,9 +1,9 @@
 #!groovy
 def jiraId
-
-//def props = readProperties file:'JenkinsfileConfig.properties'
 def ret
 def values
+def p
+def temp
 
 properties = null     
 
@@ -37,8 +37,12 @@ pipeline {
 					  { 
 				           //echo "Entering for loop properties file value ${properties.JIRA}"	  
 				           echo "Entering for loop with array value ${ji}"
-					   ret = sh(script: 'git log --pretty=format:\"%s %H\" | 'grep' $ji | awk \'{print $NF}\'', returnStdout: true)
-               				   echo "val of ret ${ret}"
+					   ret = sh(script: 'git log --pretty=format:\"%s %H\" | grep "${ji}" | awk \'{print $NF}\'', returnStdout: true)
+               				   p = 'ps aux'.execute() | 'grep foo'.execute() | ['awk', '{ print $1 }'].execute()
+					   p.waitFor()
+					   temp=p.text
+				           echo "val of ret ${ret}"
+				           echo "val of ret ${temp}"
 					   values = ret.split('\n') 
                                           }	 
 			          
