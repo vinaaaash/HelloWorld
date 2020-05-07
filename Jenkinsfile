@@ -25,7 +25,9 @@ def checkoutGitRepository(comm, poll = true, timeout = 10, depth = 0){
 pipeline {
     agent any
 	stages {
-		
+		stage ('propertiesload'){
+			loadProperties()
+		}
 		  stage ('forloop'){
 			  steps {
 				  script{
