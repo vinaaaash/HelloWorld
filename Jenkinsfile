@@ -1,9 +1,8 @@
 #!groovy
+
 def jiraId
 def ret
 def values = []
-def command
-
 
 properties = null     
 
@@ -20,7 +19,7 @@ def checkoutGitRepository(comm, poll = true, timeout = 10, depth = 0){
           doGenerateSubmoduleConfigurations: false,
           extensions: [[$class: 'CheckoutOption', timeout: 10],[$class: 'RelativeTargetDirectory', relativeTargetDir: '/var/lib/jenkins/workspace/multibranch-pipeline-test_master/']],
           submoduleCfg: [],
-          userRemoteConfigs: [[credentialsId: 'cb6b162a-4202-436c-ab60-44e8886a4de4', url: 'https://github.com/vinaaaash/HelloWorld.git']]])
+          userRemoteConfigs: [[credentialsId: properties.PASSWORD, url: properties.GIT_URL]]])
               }
 
 pipeline {
@@ -32,24 +31,17 @@ pipeline {
 				  script{
 					 loadProperties()
 					 jiraId="${properties.JIRA}".split(',')
-					//echo "Environment value ${env.WORKSPACE}" 
-					 //command = 'git log --pretty=format:\"%s %H\"| grep DSTT-2121'
-					  //def output = ['bash', '-c', command].execute().in.text
-					  //echo "val of output is ${output}"
+					
 				  for(ji in jiraId)
 					  { 
-				           
 				           echo "Entering for loop with array value ${ji}"
-						  def script = "git log --pretty=format:\"%s %H\" | grep ${ji} | awk \'{print \$NF}\'"
-						  echo script
-						  ret = sh(script: script, returnStdout: true)
-               				   //p = 'git log --pretty=format:\"%s %H\"'.execute() | 'grep DSTT-2020'.execute() | ['awk', '{print $NF}'].execute()
-					   //p.waitFor()
-					   //echo p.text
-				           echo "val of ret ${ret}"
-				           //echo "val of temp ${temp}"
-						  ret.split('\n').every{values.add(it)}
-					   //values.add(ret.split('\n'))
+				           def command = "git log --pretty=format:\"%s %H\" | grep ${ji} | awk \'{print \$NF}\'"
+					   //echo script
+					   ret = sh(script: command, returnStdout: true)
+               				   echo "val of ret ${ret}"
+				           ret.split('\n').every{values.add(it)}
+						  
+					   
                                           }	 
 			          
 
@@ -61,7 +53,7 @@ pipeline {
 		    script{
 			for(val in values)
        			{
-          			echo "Entering for loop with value ${val}"
+          			echo "Entering checkout stage: for loop: value ${val}"
          			checkoutGitRepository(val, poll = true, timeout = 10, depth = 0)
 
        			} // for closing
