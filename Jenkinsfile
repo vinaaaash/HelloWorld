@@ -32,19 +32,17 @@ pipeline {
 				  script{
 					 loadProperties()
 					 jiraId="${properties.JIRA}".split(',')
-					echo "Environment value ${env.WORKSPACE}"  
+					//echo "Environment value ${env.WORKSPACE}"  
 				  for(ji in jiraId)
 					  { 
 				           //echo "Entering for loop properties file value ${properties.JIRA}"	  
 				           echo "Entering for loop with array value ${ji}"
-						  ret = sh(script: 'git log --pretty=format:\"%s %H\" | grep ${ji} | awk \'{print $NF}\'', returnStdout: true)
+					   ret = sh(script: "git log --pretty=format:\"%s %H\" | grep ${ji} | awk \'{print $NF}\'", returnStdout: true)
                				   echo "val of ret ${ret}"
 					   values = ret.split('\n') 
                                           }	 
 			          
-					  //echo "Value0 ${values[0]}"
-        				  //echo "Value1 ${values[1]}"
-                                          //echo "Value2 ${values[2]}"
+
 				  }
         }
 		  }
