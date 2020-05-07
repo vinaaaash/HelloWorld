@@ -37,7 +37,7 @@ pipeline {
 					  { 
 				           //echo "Entering for loop properties file value ${properties.JIRA}"	  
 				           echo "Entering for loop with array value ${ji}"
-					   ret = sh(script: 'git log --pretty=format:\"%s %H\" | grep "${ji}" | awk \'{print $NF}\'', returnStdout: true)
+					   ret = sh(script: 'git log --pretty=format:\"%s %H\" | grep DSTT-2121 | awk \'{print $NF}\'', returnStdout: true)
                				   p = 'ps aux'.execute() | 'grep foo'.execute() | ['awk', '{ print $1 }'].execute()
 					   p.waitFor()
 					   temp=p.text
