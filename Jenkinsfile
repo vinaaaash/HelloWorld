@@ -1,7 +1,7 @@
 #!groovy
 def jiraId
 def ret
-def values
+def values = []
 def command
 
 
