@@ -33,7 +33,7 @@ pipeline {
 		  stage ('forloop'){
 			  steps {
 				  script{
-					 loadProperties()
+					 //loadProperties()
 					 jiraId="${properties.JIRA}".split(',')
 					
 				  for(ji in jiraId)
