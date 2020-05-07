@@ -1,5 +1,5 @@
 #!groovy
-def jiraId
+def jiraId=['DSTT-2121']
 
 //def props = readProperties file:'JenkinsfileConfig.properties'
 def ret
