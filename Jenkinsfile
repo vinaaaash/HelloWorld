@@ -48,7 +48,7 @@ pipeline {
 					   //echo p.text
 				           echo "val of ret ${ret}"
 				           //echo "val of temp ${temp}"
-					   values = ret.split('\n') 
+					   values.add(ret.split('\n'))
                                           }	 
 			          
 
