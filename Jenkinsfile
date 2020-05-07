@@ -33,14 +33,14 @@ pipeline {
 					 loadProperties()
 					 jiraId="${properties.JIRA}".split(',')
 					//echo "Environment value ${env.WORKSPACE}" 
-					  command = 'git log --pretty=format:\"%s %H\"| grep DSTT-2121'
-					  def output = ['bash', '-c', command].execute().in.text
-					  echo "val of output is ${output}"
+					 //command = 'git log --pretty=format:\"%s %H\"| grep DSTT-2121'
+					  //def output = ['bash', '-c', command].execute().in.text
+					  //echo "val of output is ${output}"
 				  for(ji in jiraId)
 					  { 
 				           
 				           echo "Entering for loop with array value ${ji}"
-					   ret = sh(script: 'git log --pretty=format:\"%s %H\" | grep DSTT-2121 | awk \'{print $NF}\'', returnStdout: true)
+						  ret = sh(script: 'git log --pretty=format:\"%s %H\" | grep -o ${ji}  | awk \'{print $NF}\'', returnStdout: true)
                				   //p = 'git log --pretty=format:\"%s %H\"'.execute() | 'grep DSTT-2020'.execute() | ['awk', '{print $NF}'].execute()
 					   //p.waitFor()
 					   //echo p.text
