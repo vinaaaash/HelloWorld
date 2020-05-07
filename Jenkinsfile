@@ -1,7 +1,7 @@
 #!groovy
 
 def jiraId
-def ret
+def shelloutput
 def values = []
 
 properties = null     
@@ -25,12 +25,12 @@ def checkoutGitRepository(comm, poll = true, timeout = 10, depth = 0){
 pipeline {
     agent any
 	stages {
-		stage ('propertiesload'){
+		stage ('Load Properties'){
 			steps{
 			loadProperties()
 			}
 		}
-		  stage ('forloop'){
+		  stage ('Fetch Commit Ids'){
 			  steps {
 				  script{
 					 //loadProperties()
@@ -40,10 +40,10 @@ pipeline {
 					  { 
 				           echo "Entering for loop with array value ${ji}"
 				           def command = "git log --pretty=format:\"%s %H\" | grep ${ji} | awk \'{print \$NF}\'"
-					   //echo script
-					   ret = sh(script: command, returnStdout: true)
-               				   echo "val of ret ${ret}"
-				           ret.split('\n').every{values.add(it)}
+					   //echo command
+					   shelloutput = sh(script: command, returnStdout: true)
+               				   echo "val of ret ${shelloutput}"
+				           shelloutput.split('\n').every{values.add(it)}
 						  
 					   
                                           }	 
@@ -52,7 +52,7 @@ pipeline {
 				  }
         }
 		  }
-        stage ('checkout'){
+        stage ('Checkout Specific File'){
             steps {
 		    script{
 			for(val in values)
