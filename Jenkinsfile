@@ -33,7 +33,7 @@ pipeline {
 					 loadProperties()
 					 jiraId="${properties.JIRA}".split(',')
 					//echo "Environment value ${env.WORKSPACE}" 
-					  command = 'uname'
+					  command = 'git log --pretty=format:\"%s %H\"'
 					  def output = ['bash', '-c', command].execute().in.text
 					  echo "val of output is ${output}"
 				  for(ji in jiraId)
