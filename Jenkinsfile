@@ -42,7 +42,7 @@ pipeline {
 				           echo "Entering for loop with array value ${ji}"
 						  def script = "git log --pretty=format:\"%s %H\" | grep ${ji} | awk \'{print \$NF}\'"
 						  echo script
-						  ret = sh(script: 'git log --pretty=format:\"%s %H\" | grep ${ji} | awk \'{print $NF}\'', returnStdout: true)
+						  ret = sh(script: script, returnStdout: true)
                				   //p = 'git log --pretty=format:\"%s %H\"'.execute() | 'grep DSTT-2020'.execute() | ['awk', '{print $NF}'].execute()
 					   //p.waitFor()
 					   //echo p.text
