@@ -17,7 +17,7 @@ def checkoutGitRepository(comm, poll = true, timeout = 10, depth = 0){
           [$class: 'GitSCM',
    	  branches: [[name: comm]],
           doGenerateSubmoduleConfigurations: false,
-          extensions: [[$class: 'CheckoutOption', timeout: 10],[$class: 'RelativeTargetDirectory', relativeTargetDir: '/var/lib/jenkins/workspace/multibranch-pipeline-test_master/chkoutdir']],
+          extensions: [[$class: 'CheckoutOption', timeout: 10],[$class: 'RelativeTargetDirectory', relativeTargetDir: properties.PATH]],
           submoduleCfg: [],
           userRemoteConfigs: [[credentialsId: properties.PASSWORD, url: properties.URL]]])
               }
