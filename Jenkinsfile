@@ -11,7 +11,7 @@ def loadProperties() {
         File propertiesFile = new File("${workspace}/JenkinsfileConfig.properties")
         properties.load(propertiesFile.newDataInputStream())
     }
-def checkoutGitRepository(comm, poll = true, timeout = 10, depth = 0){
+def checkoutGitRepository(comm){
           
 	  checkout(
           [$class: 'GitSCM',
@@ -58,7 +58,7 @@ pipeline {
 			for(val in values)
        			{
           			echo "Entering checkout stage: for loop: value ${val}"
-         			checkoutGitRepository(val, poll = true, timeout = 10, depth = 0)
+         			checkoutGitRepository(val)
 
        			} // for closing
               		  } //checkout script close
