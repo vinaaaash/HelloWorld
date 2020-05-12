@@ -3,7 +3,7 @@
 def jiraId
 def shelloutput
 def values = []
-def pathFinderCommand = []
+//def pathFinderCommand = []
 
 properties = null     
 
@@ -48,8 +48,9 @@ pipeline {
 				           shelloutput.split('\n').every
 						  {
 						   values.add(it)
-						   pathFinderCommand.add("git show --pretty=\"\" --name-only ${it}")
-						   echo "val of pathfinder ${pathFinderCommand}"
+						   def pathFinderCommand="git show --pretty=\"\" --name-only ${it}"
+					           shelloutput1 = sh(script: pathFinderCommand, returnStdout: true)
+						   echo "val of pathfinder ${shelloutput1}"
 					   }
 				           
 					   
