@@ -55,7 +55,7 @@ pipeline {
 				                   //sh(script: command2, returnStdout: false)
 						   source=source.trim()
 						   echo "Printing Source and Destination : ${source} ${workspace}/sparse"
-						   sh "rm -rf ${workspace}/sparse"
+						   sh "rm -rf ${workspace}/sparse/*"
 						   sh "cp --parents ${source} ${workspace}/sparse"
 							  
 					   }
