@@ -28,7 +28,7 @@ pipeline {
 		stage ('Load Properties'){
 			steps{
 			loadProperties()
-			cleanWs()
+			//cleanWs()
 			checkoutGitRepository()
 			}
 		}
