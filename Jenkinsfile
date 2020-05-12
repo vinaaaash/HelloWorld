@@ -54,7 +54,7 @@ pipeline {
 					           //def command2="cp --parents ${shelloutput1} ${workspace}/copydir"
 					           //echo "val of command2 ${command2}"
 				                   //sh(script: command2, returnStdout: false)
-							  echo "workspace val ${workspace}"
+							  echo "workspace_val ${workspace}/copydir"
 						   sh "cp --parents ${shelloutput1} ${workspace}/copydir"
 							  
 					   }
