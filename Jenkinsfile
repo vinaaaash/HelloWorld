@@ -15,7 +15,7 @@ def checkoutGitRepository(){
           
 	  checkout(
           [$class: 'GitSCM',
-   	  branches: [[name: comm]],
+   	  branches: [[name: '*/master']],
           doGenerateSubmoduleConfigurations: false,
 	   extensions: [[$class: 'CheckoutOption', timeout: 10]],
           submoduleCfg: [],
