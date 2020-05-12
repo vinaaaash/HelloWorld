@@ -55,8 +55,8 @@ pipeline {
 					           //echo "val of command2 ${command2}"
 				                   //sh(script: command2, returnStdout: false)
 							  shelloutput1=shelloutput1.trim()
-							  echo "workspace_val ${shelloutput1} ${workspace}/copydir"
-						   sh "sudo cp --parents ${shelloutput1} ${workspace}/copydir"
+							  echo "workspace_val ${shelloutput1} ${workspace}/sparse"
+						   sh "sudo cp --parents ${shelloutput1} ${workspace}/sparse"
 							  
 					   }
 				           
