@@ -52,7 +52,7 @@ pipeline {
 				  }
         }
 		  }
-        stage ('Checkout Specific File'){
+       /* stage ('Checkout Specific File'){
             steps {
 		    script{
 			for(val in values)
@@ -65,6 +65,6 @@ pipeline {
                 
             	  } // checkout steps close
                      	} // checkout stage close
-	
+	*/
 	       } // stages closing
           } // pipeline closing
