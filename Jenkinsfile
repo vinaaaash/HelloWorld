@@ -1,10 +1,9 @@
 #!groovy
 
 def jiraId
-def shelloutput
+def commitId
 def values = []
 //def pathFinderCommand = []
-def path='/var/lib/jenkins/workspace/multibranch-pipeline-test_master/sparse-copy'
 properties = null     
 
 def loadProperties() {
@@ -43,20 +42,21 @@ pipeline {
 				           def command = "git log --pretty=format:\"%s %H\" | grep ${ji} | awk \'{print \$NF}\'"
 					   //echo command
 				           
-					   shelloutput = sh(script: command, returnStdout: true)
-               				   echo "val of ret ${shelloutput}"
-				           shelloutput.split('\n').every
+					   commitId = sh(script: command, returnStdout: true)
+               				   echo "value of commitId variable: ${commitId}"
+				           commitId.split('\n').every
 						  {
 						   values.add(it)
-						   def pathFinderCommand="git show --pretty=\"\" --name-only ${it}"
-					           shelloutput1 = sh(script: pathFinderCommand, returnStdout: true)
-						   echo "val of pathfinder ${shelloutput1}"
+						   def srcFiles="git show --pretty=\"\" --name-only ${it}"
+					           source = sh(script: srcFiles, returnStdout: true)
+						   echo "value of source variable: ${source}"
 					           //def command2="cp --parents ${shelloutput1} ${workspace}/copydir"
 					           //echo "val of command2 ${command2}"
 				                   //sh(script: command2, returnStdout: false)
-							  shelloutput1=shelloutput1.trim()
-							  echo "workspace_val ${shelloutput1} ${workspace}/sparse"
-						   sh "cp --parents ${shelloutput1} ${workspace}/sparse"
+						   source=source.trim()
+						   echo "Printing Source and Destination : ${source} ${workspace}/sparse"
+						   sh "rm -rf ${workspace}/sparse"
+						   sh "cp --parents ${source} ${workspace}/sparse"
 							  
 					   }
 				           
