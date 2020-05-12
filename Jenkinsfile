@@ -56,7 +56,7 @@ pipeline {
 				                   //sh(script: command2, returnStdout: false)
 							  shelloutput1=shelloutput1.trim()
 							  echo "workspace_val ${shelloutput1} ${workspace}/copydir"
-						   sh "cp --parents ${shelloutput1} ${workspace}/copydir"
+						   sh "sudo cp --parents ${shelloutput1} ${workspace}/copydir"
 							  
 					   }
 				           
