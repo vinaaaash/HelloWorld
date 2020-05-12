@@ -46,27 +46,22 @@ pipeline {
 					   commitId = sh(script: command, returnStdout: true)
                				   echo "value of commitId variable: ${commitId}"
 					  
-				           commitId.split('\n').every
+						  commitId.split('\n').every{values.add(it)}
+					  }  //for jiraId closed
+						  for (val in values)
 						  {
-						   //values.add(it)
-						   def srcFiles="git show --pretty=\"\" --name-only ${it}"
+						   def srcFiles="git show --pretty=\"\" --name-only ${val}"
 					           source = sh(script: srcFiles, returnStdout: true)
 						   echo "value of source variable: ${source}"
 					           source=source.trim()
 						   echo "Printing Source and Destination : ${source} ${workspace}/sparse"
 						   sh "cp --parents ${source} ${workspace}/sparse"
 							  
-					   }
-				           
-					   
-                                          }
+					   } // for values closed
+				           } // scripts closed
 					  
-					  
-			          
-
-				  }
-        }
-		  }
+        } //step closed
+		  } // stage closed
     /*   stage ('Checkout Specific File'){
             steps {
 		    script{
