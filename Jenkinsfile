@@ -30,7 +30,7 @@ pipeline {
 			loadProperties()
 			}
 		}
-		  stage ('Fetch Commit Ids'){
+		  stage ('Sparse Checkout'){
 			  steps {
 				  script{
 					 //loadProperties()
