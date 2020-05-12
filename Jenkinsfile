@@ -29,7 +29,7 @@ pipeline {
 			steps{
 			loadProperties()
 			//cleanWs()
-			checkoutGitRepository()
+			//checkoutGitRepository()
 			}
 		}
 		  stage ('Sparse Checkout'){
