@@ -57,7 +57,7 @@ pipeline {
 						   source=source.trim()
 						   echo "value of source variable: ${source}"
 					           
-						   echo "Printing Source and Destination : ${source} ${workspace}/sparse"
+						   echo "Printing Source and Destination : ${source}.trim() ${workspace}/sparse"
 						   sh "cp --parents ${source} ${workspace}/sparse"
 							  
 					   } // for values closed
