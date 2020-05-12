@@ -3,6 +3,7 @@
 def jiraId
 def shelloutput
 def values = []
+def pathFinderCommand = []
 
 properties = null     
 
@@ -41,30 +42,40 @@ pipeline {
 				           echo "Entering for loop with array value ${ji}"
 				           def command = "git log --pretty=format:\"%s %H\" | grep ${ji} | awk \'{print \$NF}\'"
 					   //echo command
+				           
 					   shelloutput = sh(script: command, returnStdout: true)
                				   echo "val of ret ${shelloutput}"
-				           shelloutput.split('\n').every{values.add(it)}
-						  
+				           shelloutput.split('\n').every
+						  {
+						   values.add(it)
+						   pathFinderCommand.add("git show --pretty=\"\" --name-only ${it}")
+						   echo "val of pathfinder ${pathFinderCommand}"
+					   }
+				           
 					   
-                                          }	 
+                                          }
+					  
+					  
 			          
 
 				  }
         }
 		  }
-       /* stage ('Checkout Specific File'){
+       stage ('Checkout Specific File'){
             steps {
 		    script{
 			for(val in values)
        			{
           			echo "Entering checkout stage: for loop: value ${val}"
-         			checkoutGitRepository(val)
+         			//checkoutGitRepository(val)
+				
+				//Files.copy(source, target)
 
        			} // for closing
               		  } //checkout script close
                 
             	  } // checkout steps close
                      	} // checkout stage close
-	*/
+	
 	       } // stages closing
           } // pipeline closing
