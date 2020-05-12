@@ -1,0 +1,9 @@
+git archive --remote=https://github.com/vinaaaash/HelloWorld.git 70ef9951988a221140857e11878099e6959b58b8 ${workspace}/multibranch-pipeline-test_master/chkoutdir | tar x
+
+git show commit-specifier:path
+
+git show --pretty="" --name-only 0954871caebc63ebd227e4eb75db8c6ce4d58d39
+
+git show --pretty="" --name-only 0954871caebc63ebd227e4eb75db8c6ce4d58d39
+git show --pretty="" --name-only 70ef9951988a221140857e11878099e6959b58b8
+git show --pretty="" --name-only 70ef9951988a221140857e11878099e6959b58b8 0954871caebc63ebd227e4eb75db8c6ce4d58d39
