@@ -54,8 +54,9 @@ pipeline {
 						  {
 						   def srcFiles="git show --pretty= --name-only ${val}"
 					           source = sh(script: srcFiles, returnStdout: true)
+						   source=source.trim()
 						   echo "value of source variable: ${source}"
-					           source=source.trim()
+					           
 						   echo "Printing Source and Destination : ${source} ${workspace}/sparse"
 						   sh "cp --parents ${source} ${workspace}/sparse"
 							  
