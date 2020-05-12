@@ -54,7 +54,7 @@ pipeline {
 							//  def command2="cp -r ${shelloutput1} ${workspace}"
 							//  echo "val of command2 ${command2}"
 				//sh(script: command2, returnStdout: false)
-							  sh 'cp -r' ${shelloutput1} ${path}
+							  sh 'cp -r' +${shelloutput1}+ '' +${path}+
 					   }
 				           
 					   
