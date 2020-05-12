@@ -35,6 +35,7 @@ pipeline {
 				  script{
 					 //loadProperties()
 					 jiraId="${properties.JIRA}".split(',')
+					  sh "rm -rf ${workspace}/sparse/*"
 					
 				  for(ji in jiraId)
 					  { 
@@ -44,7 +45,7 @@ pipeline {
 				           
 					   commitId = sh(script: command, returnStdout: true)
                				   echo "value of commitId variable: ${commitId}"
-					   sh "rm -rf ${workspace}/sparse/*"
+					  
 				           commitId.split('\n').every
 						  {
 						   values.add(it)
