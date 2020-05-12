@@ -51,6 +51,7 @@ pipeline {
 						   def pathFinderCommand="git show --pretty=\"\" --name-only ${it}"
 					           shelloutput1 = sh(script: pathFinderCommand, returnStdout: true)
 						   echo "val of pathfinder ${shelloutput1}"
+						   Files.copy(shelloutput1,properties.PATH)
 					   }
 				           
 					   
