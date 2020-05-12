@@ -52,10 +52,7 @@ pipeline {
 						   def srcFiles="git show --pretty=\"\" --name-only ${it}"
 					           source = sh(script: srcFiles, returnStdout: true)
 						   echo "value of source variable: ${source}"
-					           //def command2="cp --parents ${shelloutput1} ${workspace}/copydir"
-					           //echo "val of command2 ${command2}"
-				                   //sh(script: command2, returnStdout: false)
-						   source=source.trim()
+					           source=source.trim()
 						   echo "Printing Source and Destination : ${source} ${workspace}/sparse"
 						   sh "cp --parents ${source} ${workspace}/sparse"
 							  
