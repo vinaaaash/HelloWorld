@@ -51,7 +51,7 @@ pipeline {
 						   def pathFinderCommand="git show --pretty=\"\" --name-only ${it}"
 					           shelloutput1 = sh(script: pathFinderCommand, returnStdout: true)
 						   echo "val of pathfinder ${shelloutput1}"
-						   def command2="cp -r ${shelloutput1} ' ' ${workspace}"
+						   def command2="cp --parents ${shelloutput1} ${workspace/copydir}"
 					           echo "val of command2 ${command2}"
 				                   sh(script: command2, returnStdout: false)
 							  
