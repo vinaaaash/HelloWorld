@@ -11,13 +11,13 @@ def loadProperties() {
         File propertiesFile = new File("${workspace}/JenkinsfileConfig.properties")
         properties.load(propertiesFile.newDataInputStream())
     }
-def checkoutGitRepository(comm){
+def checkoutGitRepository(){
           
 	  checkout(
           [$class: 'GitSCM',
    	  branches: [[name: comm]],
           doGenerateSubmoduleConfigurations: false,
-          extensions: [[$class: 'CheckoutOption', timeout: 10],[$class: 'RelativeTargetDirectory', relativeTargetDir: properties.PATH]],
+	   extensions: [[$class: 'CheckoutOption', timeout: 10]],
           submoduleCfg: [],
           userRemoteConfigs: [[credentialsId: properties.PASSWORD, url: properties.URL]]])
               }
@@ -28,6 +28,8 @@ pipeline {
 		stage ('Load Properties'){
 			steps{
 			loadProperties()
+			cleanWs()
+			checkoutGitRepository()
 			}
 		}
 		  stage ('Sparse Checkout'){
@@ -50,7 +52,7 @@ pipeline {
 					  }  //for jiraId closed
 						  for (val in values)
 						  {
-						   def srcFiles="git show --pretty=\"\" --name-only ${val}"
+						   def srcFiles="git show --pretty= --name-only ${val}"
 					           source = sh(script: srcFiles, returnStdout: true)
 						   echo "value of source variable: ${source}"
 					           source=source.trim()
