@@ -51,7 +51,8 @@ pipeline {
 						   def pathFinderCommand="git show --pretty=\"\" --name-only ${it}"
 					           shelloutput1 = sh(script: pathFinderCommand, returnStdout: true)
 						   echo "val of pathfinder ${shelloutput1}"
-		        def command2="cp -R shelloutput1 /var/lib/jenkins/workspace/multibranch-pipeline-test_master/sparse-copy"
+							  def command2="cp -R ${shelloutput1} /var/lib/jenkins/workspace/multibranch-pipeline-test_master/sparse-copy"
+							  echo "val of pathfinder ${command2}"
 				sh(script: command2, returnStdout: false)
 					   }
 				           
