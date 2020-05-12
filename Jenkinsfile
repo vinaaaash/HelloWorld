@@ -48,7 +48,7 @@ pipeline {
 					  
 				           commitId.split('\n').every
 						  {
-						   values.add(it)
+						   //values.add(it)
 						   def srcFiles="git show --pretty=\"\" --name-only ${it}"
 					           source = sh(script: srcFiles, returnStdout: true)
 						   echo "value of source variable: ${source}"
