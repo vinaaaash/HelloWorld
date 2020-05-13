@@ -28,16 +28,16 @@ pipeline {
 		stage ('Load Properties'){
 			steps{
 			loadProperties()
-			//cleanWs()
-			//checkoutGitRepository()
+			cleanWs()
+			checkoutGitRepository()
 			}
 		}
 		  stage ('Sparse Checkout'){
 			  steps {
 				  script{
-					 //loadProperties()
+					 sh 'mkdir sparsechkout'
 					 jiraId="${properties.JIRA}".split(',')
-					  sh "rm -rf ${workspace}/sparse/*"
+					  //sh "rm -rf ${workspace}/sparse/*"
 					
 				  for(ji in jiraId)
 					  { 
@@ -52,13 +52,15 @@ pipeline {
 					  }  //for jiraId closed
 						  for (val in values)
 						  {
-						   def srcFiles="git show --pretty= --name-only ${val}"
+						   //def srcFiles="git show --pretty= --name-only ${val}"
+			def srcFiles="git diff-tree --no-commit-id --name-only -r ${val} | xargs tar -rf mytarfile.tar | xargs tar -xvf mytarfile.tar -C sparsechkout"
 					           source = sh(script: srcFiles, returnStdout: true)
 						   source=source.trim()
 						   echo "value of source variable: ${source}"
 					           
 						   echo "Printing Source and Destination : ${source} ${workspace}/copydir"
-						   sh "cp --parents ${source} ${workspace}/copydir"
+						   //sh "cp --parents ${source} ${workspace}/copydir"
+					           sh 'rm mytarfile.tar'
 							  
 					   } // for values closed
 				           } // scripts closed
