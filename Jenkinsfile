@@ -83,5 +83,5 @@ pipeline {
             	  } // checkout steps close
                      	} // checkout stage close
 	*/
-	       } // stages closing
+	       } // stages closing//
           } // pipeline closing
