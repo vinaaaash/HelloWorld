@@ -58,9 +58,9 @@ pipeline {
 						   source=source.trim()
 						   echo "value of source variable: ${source}"
 					           
-						   echo "Printing Source and Destination : ${source} ${workspace}/copydir"
+						   echo "Printing Source and Destination : ${source} ${workspace}/sparsechkout"
 						   //sh "cp --parents ${source} ${workspace}/copydir"
-					           sh 'rm mytarfile.tar'
+					           //sh 'rm mytarfile.tar'
 							  
 					   } // for values closed
 				           } // scripts closed
