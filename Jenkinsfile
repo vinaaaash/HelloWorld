@@ -30,6 +30,9 @@ pipeline {
 			loadProperties()
 			cleanWs()
 			checkoutGitRepository()
+			dir("${workspace}@tmp") {
+                        deleteDir()
+                        }
 			}
 		}
 		  stage ('Sparse Checkout'){
