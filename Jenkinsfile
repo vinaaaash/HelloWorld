@@ -72,8 +72,9 @@ pipeline {
 		    script{
 			emailIds = sh (script: 'git --no-pager show -s --format=\'%ae\'',returnStdout: true).trim()
             		echo "Git committer email: ${emailIds}"
+			    emailext attachLog: true, attachmentsPattern: '.pdf', body: 'Test Body', compressLog: true, mimeType: 'text\\html', recipientProviders: [upstreamDevelopers()], subject: 'Test', to: 'vinaaaash@gmail.com'
               		  } //checkout script close
-                    script {mail (to: "${properties.emailIds}",
+                /*    script {mail (to: "${properties.emailIds}",
 				  subject: "Microservice: '${properties.microServName}' (${env.BUILD_NUMBER}) successfull.",
 				  body: "Microservice name: ${properties.microServName}\nGCP deployment: ${properties.GCPdeployment}\nOn-prem deployment:${properties.Onpremdeployment}\n\nPlease visit ${env.BUILD_URL} for further information.");
 
@@ -83,7 +84,7 @@ body:"<table><tr><td>Job Name</td><td>: ${currentBuild.fullDisplayName} </td></t
 "For more details please check the logs: $BUILD_URL",
 to: emailIds,
 mimeType:'text/html'
-}
+}*/
             	  } // checkout steps close
                      	} // checkout stage close
 	
