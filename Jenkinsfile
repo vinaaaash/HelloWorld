@@ -76,7 +76,6 @@ pipeline {
                     script {mail (to: "${properties.emailIds}",
 				  subject: "Microservice: '${properties.microServName}' (${env.BUILD_NUMBER}) successfull.",
 				  body: "Microservice name: ${properties.microServName}\nGCP deployment: ${properties.GCPdeployment}\nOn-prem deployment:${properties.Onpremdeployment}\n${jobdetail}\nArtifact : ${notifydetails}\n\nNOTE: For higher environment deployment update ${version} in jenkins property file(Not applicable for feature branche builds).\n\nPlease visit ${env.BUILD_URL} for further information.");
-?
 
 emailext subject:"Build of ${microServName} SUCCESSFUL!!!",
 body:"<table><tr><td>Job Name</td><td>: ${currentBuild.fullDisplayName} </td></tr>"+
