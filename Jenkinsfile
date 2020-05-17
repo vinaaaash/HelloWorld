@@ -67,21 +67,15 @@ pipeline {
 					  
         } //step closed
 		  } // stage closed
-    /*   stage ('Checkout Specific File'){
+     stage ('Email'){
             steps {
 		    script{
-			for(val in values)
-       			{
-          			echo "Entering checkout stage: for loop: value ${val}"
-         			//checkoutGitRepository(val)
-				
-				//Files.copy(source, target)
-
-       			} // for closing
+			emailIds = sh (script: 'git --no-pager show -s --format=\'%ae\'',returnStdout: true).trim()
+            		echo "Git committer email: ${emailIds}"
               		  } //checkout script close
                 
             	  } // checkout steps close
                      	} // checkout stage close
-	*/
+	
 	       } // stages closing//
           } // pipeline closing// more changes
