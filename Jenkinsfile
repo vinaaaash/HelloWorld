@@ -1,21 +1,27 @@
 pipeline {
-    agent any
+  agent any
+  triggers {
+    GenericTrigger(
+     genericVariables: [
+      [key: 'ref', value: '$.ref']
+     ],
 
-    stages {
-        stage('Build Branch') {
-            steps {
-                echo 'Building..'
-            }
-        }
-        stage('Test 2nd Branch') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy 2nd Branch') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
+     causeString: 'Triggered on $ref',
+
+     token: 'token123',
+
+     printContributedVariables: true,
+     printPostContent: true,
+
+     regexpFilterText: '$ref',
+     regexpFilterExpression: 'refs/heads/' + BRANCH_NAME
+    )
+  }
+  stages {
+    stage('Some step') {
+      steps {
+        sh "echo $ref"
+      }
     }
+  }
 }
