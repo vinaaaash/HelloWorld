@@ -7,7 +7,7 @@ pipeline {
         echo 'Building...'
 
         echo 'Env vars for cloud pull request...'
-        echo "BITBUCKET_SOURCE_BRANCH ${env.BITBUCKET_SOURCE_BRANCH}"
+        echo "BITBUCKET_SOURCE_BRANCH ${env.SOURCE_BRANCH}"
         echo "BITBUCKET_TARGET_BRANCH ${env.BITBUCKET_TARGET_BRANCH}"
         echo "BITBUCKET_PULL_REQUEST_LINK ${env.BITBUCKET_PULL_REQUEST_LINK}"
         echo "BITBUCKET_PULL_REQUEST_ID ${env.BITBUCKET_PULL_REQUEST_ID}"
