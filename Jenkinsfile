@@ -70,18 +70,12 @@ pipeline {
 					  
         } //step closed
 		  } // stage closed
-stage ('Email'){
-  steps {
-    script{
-	emailIds = sh (script: 'git --no-pager show -s --format=\'%ae\'',returnStdout: true).trim()
-        echo "Git committer email: ${emailIds}"
-//emailext attachLog: true, attachmentsPattern: '.pdf', body: 'Test Body', compressLog: true, mimeType: 'text\\html', recipientProviders: [upstreamDevelopers()], subject: 'Test', to: 'vinaaaash@gmail.com'
-        mail (to: "${properties.emailIds}",
-	subject: "Microservice: '${properties.microServName}' (${env.BUILD_NUMBER}) successfull.",
-        body: "Microservice name: ${properties.microServName}\nGCP deployment: ${properties.GCPdeployment}\nOn-prem deployment:${properties.Onpremdeployment}\n\nPlease visit ${env.BUILD_URL} for further information.");
-          } // Email Script closing
-        } // Email steps close
-              } // Email stage close
+
+
+stage('Demo') {
+    echo 'Hello world'
+    sayHello 'Avi'
+}
 	
 	       } // stages closing//
           } // pipeline closing// more changes
