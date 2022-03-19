@@ -6,6 +6,14 @@
 trigger:
 - master
 
+resources:
+  repositories:
+  - repository: vinaaaash
+    type: github
+    endpoint: vinaaaash/HelloWorld
+    name: vinaaaash/HelloWorld
+    ref: nilotpal
+
 pool:
   vmImage: ubuntu-latest
 
