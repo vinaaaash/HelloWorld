@@ -10,6 +10,7 @@ resources:
   repositories:
   - repository: vinaaaash
     type: github
+    endpoint: MyGitHubServiceConnection
     name: vinaaaash/HelloWorld
     ref: nilotpal
 
