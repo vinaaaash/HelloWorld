@@ -21,21 +21,8 @@ steps:
 - script: gem install rails && rails -v
   displayName: 'gem install rails'
 
-- script: |
-    CALL gem install bundler
-    bundle install --retry=3 --jobs=4
-  displayName: 'bundle install'
-
-- script: bundle exec rake
-  displayName: 'bundle exec rake'
-  
-- task: Bash@3
-  inputs:
-      targetType: 'inline'
-      script: |
-        # Write your commands here
-        
-        ruby Hello.rb
+- script: ruby Hello.rb
+  displayName: 'Run Ruby'
 
 - task: PublishTestResults@2
   condition: succeededOrFailed()
