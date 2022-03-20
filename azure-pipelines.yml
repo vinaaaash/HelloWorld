@@ -13,12 +13,6 @@ schedules:
     - master
   always: true
 
-resources:
-  repositories:
-    - repository: templates
-      type: git
-      name: vinaaaash/HelloWorld
-
 pool:
   vmImage: ubuntu-latest
 
