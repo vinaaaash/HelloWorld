@@ -17,7 +17,7 @@ resources:
   repositories:
     - repository: templates
       type: git
-      name: Ether/pipelines
+      name: vinaaaash/HelloWorld
 
 pool:
   vmImage: ubuntu-latest
