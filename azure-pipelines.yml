@@ -28,7 +28,7 @@ steps:
 - script: gem install rails && rails -v
   displayName: 'gem install rails'
 
-- script: ruby Hello.rb
+- script: ruby folder1/folder2/folder3/Hello.rb
   displayName: 'Run Ruby'
 
 - task: PublishTestResults@2
