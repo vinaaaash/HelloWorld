@@ -17,6 +17,14 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- checkout: self
+  persistCredentials: true
+- script: |
+    git checkout $(Build.SourceBranchName)
+    git push origin HEAD:master HEAD:nilotpal
+  displayName: Mirror old and new default branches
+
+
 - task: UseRubyVersion@0
   inputs:
     versionSpec: '>= 2.5'
