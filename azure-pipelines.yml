@@ -15,11 +15,9 @@ schedules:
 
 resources:
   repositories:
-  - repository: vinaaaash
-    type: github
-    endpoint: MyGitHubServiceConnection
-    name: vinaaaash/HelloWorld
-    ref: nilotpal
+    - repository: templates
+      type: git
+      name: Ether/pipelines
 
 pool:
   vmImage: ubuntu-latest
