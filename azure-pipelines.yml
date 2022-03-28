@@ -5,13 +5,13 @@
 
 trigger: none
 pr: none
-schedules:
-- cron: "0 */10 * * *"
-  displayName: Hourly Run
-  branches:
-    include:
-    - master
-  always: true
+#schedules:
+#- cron: "0 */10 * * *"
+#  displayName: Hourly Run
+#  branches:
+#    include:
+#    - master
+#  always: true
 
 pool:
   vmImage: ubuntu-latest
