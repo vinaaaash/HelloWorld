@@ -17,6 +17,9 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- checkout: self
+  persistCredentials: true
+
 - task: UseRubyVersion@0
   inputs:
     versionSpec: '>= 2.5'
