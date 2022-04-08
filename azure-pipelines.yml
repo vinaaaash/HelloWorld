@@ -30,6 +30,7 @@ steps:
     targetType: 'inline'
     script: |
       git config user.name "avinash"
+      git config --unset-all key-name
 - task: CmdLine@2
   inputs:
     script: |
