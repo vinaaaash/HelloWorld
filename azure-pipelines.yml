@@ -25,6 +25,18 @@ steps:
   displayName: Mirror old and new default branches
 
 
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      git config user.name "my_name"
+      git config user.password "my_password"
+      git clone https://my_repo@dev.azure.com/the_repo_stuff
+      git checkout dev
+      git checkout -b newer-branch
+      git commit -a -m 'new branch commit'
+      git push --set-upstream origin newer-branch
+
 - task: UseRubyVersion@0
   inputs:
     versionSpec: '>= 2.5'
