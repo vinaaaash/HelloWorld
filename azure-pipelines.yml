@@ -17,14 +17,27 @@ schedules:
 jobs:
 
 - job: myJob
-  timeoutInMinutes: 10
-  pool:
-    vmImage: 'ubuntu-latest'
-  condition: always()
+
   steps:
   - script: |
-      echo "Put your git cleaner here"
-      git config --global --unset http.extraHeader
+      echo '======================================================================'
+      echo 'list all of git config values for your convenience:'
+      echo '======================================================================'
+      git config --list 
+      echo '======================================================================'
+      existing_header=$(git config  --get http.extraHeader)
+      if [ ${#existing_header} -gt 0 ]
+      then  
+        echo 'We found the http.extraHeader'
+        echo 'un-setting extra header: http.extraHeader 🔥'
+        git config --global --unset http.extraHeader
+      else
+        echo 'no extra header: http.extraHeader was not found. Nothing to unset 👍'
+      fi
+
+    condition: always()
+    workingDirectory: '$(Agent.BuildDirectory)/s'
+    displayName: 'Remove Git Authentication'
 
 - job: otherTasks
   pool:
