@@ -1,76 +1,43 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+# Copyright (C) Microsoft Corporation. All rights reserved.
 
-trigger: none
-pr: none
-schedules:
-- cron: "0 */10 * * *"
-  displayName: Hourly Run
+trigger:
   branches:
     include:
-    - master
-  always: true
+      - master
 
+pool:
+  name: 'SVC'
 
-jobs:
+# Point to another repository for the pipeline template
+resources:
+  repositories:
+    - repository: templates
+      type: git
+      name: Ether/pipelines
 
-- job: myJob
-
-  steps:
-  - script: |
-      echo '======================================================================'
-      echo 'list all of git config values for your convenience:'
-      echo '======================================================================'
-      git config --list 
-      echo '======================================================================'
-      existing_header=$(git config  --get http.extraHeader)
-      if [ ${#existing_header} -gt 0 ]
-      then  
-        echo 'We found the http.extraHeader'
-        echo 'un-setting extra header: http.extraHeader 🔥'
-        git config --global --unset http.extraHeader
-      else
-        echo 'no extra header: http.extraHeader was not found. Nothing to unset 👍'
-      fi
-
-    condition: always()
-    workingDirectory: '$(Agent.BuildDirectory)/s'
-    displayName: 'Remove Git Authentication'
-
-- job: otherTasks
-  pool:
-   vmImage: ubuntu-latest
-
-  steps:
-  - task: UseRubyVersion@0
-    inputs:
-      versionSpec: '>= 2.5'
-      addToPath: true
+variables:
+  - group: Pipelines
   
-
-  - task: CmdLine@2
-    inputs:
-      script: |
-        echo Write your commands here
-      
-        echo Hello world
-      
-  - script: gem install rails && rails -v
-    displayName: 'gem install rails'
-
-  - script: ruby folder1/folder2/folder3/Hello.rb
-    displayName: 'Run Ruby'
-
-  - task: PublishTestResults@2
-    condition: succeededOrFailed()
-    inputs:
-      testResultsFiles: '**/test-*.xml'
-      testRunTitle: 'Ruby tests'
-
-  - task: PublishCodeCoverageResults@1
-    inputs:
-      codeCoverageTool: Cobertura
-      summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/coverage.xml'
-      reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
+stages:
+- stage: list files
+  jobs:
+  - job : searchpatterns
+    steps:
+    - bash: ls -ld
+- template: etc/pipelines/templates/promote-pipeline-template.yml@templates  # Template reference
+  parameters:
+    project: 'SiInfra'
+    repo_url: 'git@ssh.dev.azure.com:v3/ms-tsd/SiInfra/DVInfra'
+    target_branch: 'master'
+    legal_header: 'true'
+    legal_header_warning: 'true'
+    dvlint_audit: 'false'
+    verify_pull_request: 'false'
+    heimdall_map:
+      - quick: 
+          [ 
+            regr_name: 'quick',
+            regr_flags: '--clean keep_7 --no-sync --force-run --wait --wait_seconds 30 --wait_timeout -1  --regr_args skip_forget_vncset:true --flow-args hi_priority:1',
+            regr_timeout: '60'
+          ]
+	  
