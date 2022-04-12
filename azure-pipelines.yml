@@ -13,7 +13,7 @@ resources:
   repositories:
     - repository: templates
       type: git
-      name: Ether/pipelines
+      name: Test Project/pipelines
 
 variables:
   - group: Pipelines
