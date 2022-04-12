@@ -40,4 +40,4 @@ stages:
             regr_flags: '--clean keep_7 --no-sync --force-run --wait --wait_seconds 30 --wait_timeout -1  --regr_args skip_forget_vncset:true --flow-args hi_priority:1',
             regr_timeout: '60'
           ]
-	  
+  
