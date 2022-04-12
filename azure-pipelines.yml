@@ -13,7 +13,7 @@ resources:
   repositories:
     - repository: templates
       type: git
-      name: Test Project/pipelines
+      name: Test Project/Pipelines
 
 variables:
   - group: Pipelines
